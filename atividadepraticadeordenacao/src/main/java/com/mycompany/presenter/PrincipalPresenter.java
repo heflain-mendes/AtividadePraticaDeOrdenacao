@@ -4,7 +4,6 @@
  */
 package com.mycompany.presenter;
 
-import com.mycompany.business.Ordenacao;
 import com.mycompany.collection.OrdenacaoCollection;
 import com.mycompany.model.Ordem;
 import com.mycompany.service.ExecutaOrdenacaoService;
@@ -20,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import com.mycompany.business.OrdenacaoStrategy;
 
 /**
  *
@@ -87,7 +87,7 @@ public class PrincipalPresenter {
     private void processarOrdenacao() {
         List<Double> numeros = new ArrayList<>();
         numeros.addAll(this.numerosDesordenados);
-        Ordenacao ordena = this.obterMetodoOrdenacao();
+        OrdenacaoStrategy ordena = this.obterMetodoOrdenacao();
         Ordem ordem = this.obterOrdem();
 
         Instant antes = Instant.now();
@@ -103,7 +103,7 @@ public class PrincipalPresenter {
         this.carregarListaOrdenados(numeros);
     }
 
-    private Ordenacao obterMetodoOrdenacao() {
+    private OrdenacaoStrategy obterMetodoOrdenacao() {
         try {
             return this.ordenacoes.get(this.view.getCmdMetodo().getSelectedIndex());
         } catch (Exception ex) {

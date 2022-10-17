@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Heflain
  */
-public interface Ordenacao {
+public interface OrdenacaoStrategy {
     public void ordenar(List<Double> numeros, Ordem ordem) throws Exception;
     public String toString();
 }

@@ -4,16 +4,16 @@
  */
 package com.mycompany.service;
 
-import com.mycompany.business.Ordenacao;
 import com.mycompany.model.Ordem;
 import java.util.List;
+import com.mycompany.business.OrdenacaoStrategy;
 
 /**
  *
  * @author heflain
  */
 public class ExecutaOrdenacaoService {
-    public void calcular(List<Double> numeros, Ordenacao ordenacao, Ordem ordem) throws Exception{
+    public void calcular(List<Double> numeros, OrdenacaoStrategy ordenacao, Ordem ordem) throws Exception{
         ordenacao.ordenar(numeros, ordem);
     }
 }

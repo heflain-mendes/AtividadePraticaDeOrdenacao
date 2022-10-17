@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Heflain
  */
-public class BubbleSort implements Ordenacao {
+public class BubbleSortStrategy implements OrdenacaoStrategy {
 
     @Override
     public void ordenar(List<Double> numeros, Ordem ordem) throws Exception {
@@ -24,7 +24,7 @@ public class BubbleSort implements Ordenacao {
                 throw new Exception("O atributo numeros não pode conter elementos null");
             }
         }
-        
+
         if (numeros == null) {
             throw new Exception("O atributo numeros não pode ser null");
         }
@@ -34,43 +34,33 @@ public class BubbleSort implements Ordenacao {
                 throw new Exception("O atributo numeros não pode conter elementos null");
             }
         }
-        
-        if(ordem.equals(Ordem.CRESCENTE)){
-            crescente(numeros);
-        }else{
-            decrescente(numeros);
+
+        Double aux;
+        if (ordem.equals(Ordem.CRESCENTE)) {
+            for (int i = 0; i < numeros.size(); i++) {
+                for (int j = i + 1; j < numeros.size(); j++) {
+                    if (numeros.get(i) > numeros.get(j)) {
+                        aux = numeros.get(j);
+                        numeros.set(j, numeros.get(i));
+                        numeros.set(i, aux);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < numeros.size(); i++) {
+                for (int j = i + 1; j < numeros.size(); j++) {
+                    if (numeros.get(i) < numeros.get(j)) {
+                        aux = numeros.get(j);
+                        numeros.set(j, numeros.get(i));
+                        numeros.set(i, aux);
+                    }
+                }
+            }
         }
     }
 
-    private void decrescente(List<Double> numeros) {
-        Double aux;
-        for (int i = 0; i < numeros.size(); i++) {
-            for (int j = i + 1; j < numeros.size(); j++) {
-                if (numeros.get(i) < numeros.get(j)) {
-                    aux = numeros.get(j);
-                    numeros.set(j, numeros.get(i));
-                    numeros.set(i, aux);
-                }
-            }
-        }
-    }
-    
-    private void crescente(List<Double> numeros) {
-        Double aux;
-        for (int i = 0; i < numeros.size(); i++) {
-            for (int j = i + 1; j < numeros.size(); j++) {
-                if (numeros.get(i) > numeros.get(j)) {
-                    aux = numeros.get(j);
-                    numeros.set(j, numeros.get(i));
-                    numeros.set(i, aux);
-                }
-            }
-        }
-    }
-    
-    
     @Override
-    public String toString(){
+    public String toString() {
         return "bubble sort";
     }
 }

@@ -4,28 +4,28 @@
  */
 package com.mycompany.collection;
 
-import com.mycompany.business.BubbleSort;
-import com.mycompany.business.Ordenacao;
-import com.mycompany.business.SelectionSort;
+import com.mycompany.business.BubbleSortStrategy;
+import com.mycompany.business.SelectionSortStrategy;
 import java.util.ArrayList;
 import java.util.List;
+import com.mycompany.business.OrdenacaoStrategy;
 
 /**
  *
  * @author heflain
  */
 public class OrdenacaoCollection {
-    private List<Ordenacao> ordenacaoCollection;
+    private List<OrdenacaoStrategy> ordenacaoCollection;
     
     public OrdenacaoCollection(){
-        this.ordenacaoCollection = new ArrayList<Ordenacao>();
+        this.ordenacaoCollection = new ArrayList<OrdenacaoStrategy>();
         
         //Poderia fazer uma factory para criar essa estrutura
-        this.ordenacaoCollection.add(new BubbleSort());
-        this.ordenacaoCollection.add(new SelectionSort());
+        this.ordenacaoCollection.add(new BubbleSortStrategy());
+        this.ordenacaoCollection.add(new SelectionSortStrategy());
     }
     
-    public Ordenacao get(int index) throws Exception{
+    public OrdenacaoStrategy get(int index) throws Exception{
         if(index < 0 || index >= this.ordenacaoCollection.size()){
             throw new Exception("index invalido");
         }
